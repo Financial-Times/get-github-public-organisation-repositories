@@ -12,10 +12,10 @@ function getPublicOrganisationRepositoriesFor(origanisation, getForOrg, github, 
 		repositories = repositories.concat(response.data.map((datum) => {
 			var name = datum.name;
 			var git_url = datum.git_url;
-			return [{
+			return {
 				name: name,
 				url: git_url
-			}];
+			};
 		}));
 
 		if (github.hasNextPage(response)) {
