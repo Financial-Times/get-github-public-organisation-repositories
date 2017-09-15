@@ -1,25 +1,30 @@
 var GitHubApi = require("github");
 var denodeify = require('denodeify');
 
-function getPublicOrganisationRepositoriesFor(origanisation, getForOrg, github, repositories, page) {
+function getPublicOrganisationRepositoriesFor(origanisation, privateWhitelist, getForOrg, github, repositories, page) {
 	repositories = repositories || [];
 	page = page || 1;
 	return getForOrg({
 		org: origanisation,
-		type: 'public',
 		page: page
 	}).then(response => {
-		repositories = repositories.concat(response.data.map((datum) => {
-			var name = datum.name;
-			var git_url = datum.git_url;
-			return {
-				name: name,
-				url: git_url
-			};
-		}));
+		const newRepositories = response.data
+			.filter((repo) => {
+				if (repo.private && privateWhitelist.includes(repo.name)) {
+					return true;
+				}
+				return !repo.private;
+			})
+			.map((repo) => {
+				return {
+					name: repo.name,
+					url: repo.git_url
+				};
+			});
+		repositories = repositories.concat(newRepositories);
 
 		if (github.hasNextPage(response)) {
-			return getPublicOrganisationRepositoriesFor(origanisation, getForOrg, github, repositories, page + 1)
+			return getPublicOrganisationRepositoriesFor(origanisation, privateWhitelist, getForOrg, github, repositories, page + 1)
 		} else {
 			return repositories;
 		}
@@ -51,10 +56,14 @@ module.exports = function getPublicOrganisationRepositoriesFactory(token) {
 
 	var getForOrg = denodeify(github.repos.getForOrg.bind(github.repos));
 
-	return function getPublicOrganisationRepositories(organisation) {
+	return function getPublicOrganisationRepositories(organisation, privateWhitelist) {
+		privateWhitelist = privateWhitelist || [];
 		if (typeof organisation !== 'string') {
 			throw new TypeError('Expected organisation to be type string, was given type ' + typeof organisation);
 		}
-		return getPublicOrganisationRepositoriesFor(organisation, getForOrg, github, [], 1);
+		if (!Array.isArray(privateWhitelist)) {
+			throw new TypeError('Expected privateWhitelist to be type array, was given type ' + typeof privateWhitelist);
+		}
+		return getPublicOrganisationRepositoriesFor(organisation, privateWhitelist, getForOrg, github, [], 1);
 	}
 };
