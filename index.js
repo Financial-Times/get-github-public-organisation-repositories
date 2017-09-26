@@ -1,5 +1,7 @@
-var GitHubApi = require("github");
-var denodeify = require('denodeify');
+'use strict';
+
+const GitHubApi = require('github');
+const denodeify = require('denodeify');
 
 function getPublicOrganisationRepositoriesFor(origanisation, privateWhitelist, getForOrg, github, repositories, page) {
 	repositories = repositories || [];
@@ -24,7 +26,7 @@ function getPublicOrganisationRepositoriesFor(origanisation, privateWhitelist, g
 		repositories = repositories.concat(newRepositories);
 
 		if (github.hasNextPage(response)) {
-			return getPublicOrganisationRepositoriesFor(origanisation, privateWhitelist, getForOrg, github, repositories, page + 1)
+			return getPublicOrganisationRepositoriesFor(origanisation, privateWhitelist, getForOrg, github, repositories, page + 1);
 		} else {
 			return repositories;
 		}
@@ -41,7 +43,7 @@ module.exports = function getPublicOrganisationRepositoriesFactory(token) {
 		throw new TypeError(`Expected token to be type string, was given type ${typeof token}`);
 	}
 
-	var github = new GitHubApi({
+	const github = new GitHubApi({
     protocol: 'https',
     host: 'api.github.com',
     pathPrefix: '',
@@ -54,7 +56,7 @@ module.exports = function getPublicOrganisationRepositoriesFactory(token) {
 			token: token
 	});
 
-	var getForOrg = denodeify(github.repos.getForOrg.bind(github.repos));
+	const getForOrg = denodeify(github.repos.getForOrg.bind(github.repos));
 
 	return function getPublicOrganisationRepositories(organisation, privateWhitelist) {
 		privateWhitelist = privateWhitelist || [];
@@ -65,5 +67,5 @@ module.exports = function getPublicOrganisationRepositoriesFactory(token) {
 			throw new TypeError('Expected privateWhitelist to be type array, was given type ' + typeof privateWhitelist);
 		}
 		return getPublicOrganisationRepositoriesFor(organisation, privateWhitelist, getForOrg, github, [], 1);
-	}
+	};
 };
