@@ -2,7 +2,6 @@
 
 const assert = require('proclaim');
 const mockery = require('mockery');
-const sinon = require('sinon');
 
 describe('index', () => {
 	let Github;
@@ -12,7 +11,7 @@ describe('index', () => {
 		Github = require('./mock/github.mock');
 		mockery.registerMock('github', Github);
 
-		getPublicOrganisationRepositoriesFactory = require('..');
+		getPublicOrganisationRepositoriesFactory = require('../..');
 	});
 
 	it('exports a function', () => {
@@ -22,7 +21,7 @@ describe('index', () => {
 	describe('getPublicOrganisationRepositoriesFactory()', () => {
 		it('throws a TypeError because of missing token parameter', () => {
 			assert.throws(() => {
-				getPublicOrganisationRepositoriesFactory()
+				getPublicOrganisationRepositoriesFactory();
 			}, TypeError);
 		});
 	});
@@ -34,7 +33,7 @@ describe('index', () => {
 		beforeEach(() => {
 			token = 'abcdef';
 			getPublicOrganisationRepositories = getPublicOrganisationRepositoriesFactory(token);
-		})
+		});
 
 		it('constructs a github client', () => {
 			assert.calledOnce(Github);
@@ -53,7 +52,7 @@ describe('index', () => {
 				type: 'oauth',
 				token: token
 			});
-		})
+		});
 
 		it('returns a function', () => {
 			assert.isFunction(getPublicOrganisationRepositories);
@@ -62,7 +61,7 @@ describe('index', () => {
 		describe('getPublicOrganisationRepositories()', () => {
 			it('throws a TypeError because of missing organisation parameter', () => {
 				assert.throws(() => {
-					getPublicOrganisationRepositories()
+					getPublicOrganisationRepositories();
 				}, TypeError);
 			});
 		});

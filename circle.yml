@@ -1,0 +1,21 @@
+
+machine:
+  node:
+    version: 8
+
+dependencies:
+  pre:
+    - npm prune --production=false && npm install --no-spin --no-progress
+    - echo "//registry.npmjs.org/:_authToken=${NPM_AUTH_TOKEN}" > ${HOME}/.npmrc
+
+test:
+  override:
+    - make verify
+    - make test
+
+deployment:
+  release:
+    tag: /v.*/
+    owner: Financial-Times
+    commands:
+      - npm-prepublish --verbose && npm publish --access public
