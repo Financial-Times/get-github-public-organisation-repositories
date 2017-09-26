@@ -1,6 +1,6 @@
 {
   "name": "github-public-organisation-repositories",
-  "version": "1.0.2",
+  "version": "1.2.0",
   "description": "Helper function to return all public github repositories for a given organisation",
   "main": "index.js",
   "scripts": {
