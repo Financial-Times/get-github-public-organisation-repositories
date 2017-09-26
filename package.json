@@ -21,6 +21,7 @@
     "mockery": "^2.0.0",
     "npm-prepublish": "^1.2.2",
     "nyc": "^10.2.0",
-    "proclaim": "^3.4.4"
+    "proclaim": "^3.4.4",
+    "sinon": "^4.0.0"
   }
 }
