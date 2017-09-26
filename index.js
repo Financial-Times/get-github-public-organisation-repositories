@@ -18,7 +18,7 @@ function getPublicOrganisationRepositoriesFor(origanisation, privateWhitelist, g
 			.map((repo) => {
 				return {
 					name: repo.name,
-					url: repo.git_url
+					url: repo.clone_url
 				};
 			});
 		repositories = repositories.concat(newRepositories);
