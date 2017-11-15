@@ -1,36 +1,14 @@
-# ./node_modules/.bin on the PATH
-export PATH := ./node_modules/.bin:$(PATH)
-
-# Use bash not sh
-SHELL := /bin/bash
-
-# Environment variables
-# ---------------------
+# Origami Service Makefile
+# ------------------------
+# This section of the Makefile should not be modified, it includes
+# commands from the Origami service Makefile.
+# https://github.com/Financial-Times/origami-service-makefile
+include node_modules/@financial-times/origami-service-makefile/index.mk
+# [edit below this line]
+# ------------------------
 
 EXPECTED_COVERAGE = 50
 
-
-# Verify tasks
-# ------------
-
-verify:
-	eslint .
-
-verify-coverage:
-	@nyc check-coverage --lines $(EXPECTED_COVERAGE) --functions $(EXPECTED_COVERAGE) --branches $(EXPECTED_COVERAGE)
-	@$(DONE)
-
-
-# Test tasks
-# ----------
-
-test: test-unit-coverage verify-coverage
-	@$(DONE)
-
-test-unit:
-	@NODE_ENV=test mocha test/unit --recursive
-	@$(DONE)
-
-test-unit-coverage:
-	@NODE_ENV=test nyc --all --reporter=text --reporter=html mocha test/unit --recursive
-	@$(DONE)
+npm-publish:
+	npx -p npm-prepublish@^1 npm-prepublish --verbose
+	npm publish --access public
