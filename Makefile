@@ -7,6 +7,8 @@ include node_modules/@financial-times/origami-service-makefile/index.mk
 # [edit below this line]
 # ------------------------
 
+EXPECTED_COVERAGE = 50
+
 npm-publish:
 	npx -p npm-prepublish@^1 npm-prepublish --verbose
 	npm publish --access public
