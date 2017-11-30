@@ -1,0 +1,14 @@
+{
+	"description": "Helper function to return all public github repositories for a given organisation",
+	"origamiType": null,
+	"origamiVersion": 1,
+	"keywords": [
+		"github"
+	],
+	"support": "https://github.com/Financial-Times/get-github-public-organisation-repositories/issues",
+	"supportStatus": "active",
+	"supportContact": {
+		"email": "origami.support@ft.com",
+		"slack": "financialtimes/ft-origami"
+	}
+}
