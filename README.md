@@ -1,13 +1,8 @@
 
-Get Github Public Organisation Repositories
+Get Github Public Organisation Repositories [![NPM version](https://img.shields.io/npm/v/github-public-organisation-repositories.svg)](https://www.npmjs.com/package/github-public-organisation-repositories) [![Build status](https://img.shields.io/circleci/project/Financial-Times/get-github-public-organisation-repositories.svg)](https://circleci.com/gh/Financial-Times/get-github-public-organisation-repositories) [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)][license]
 ===============
 
 Provides a method which will scan a Github Organisation for all public repositories, it can also return private repositories if explicitly requested.
-
-[![NPM version](https://img.shields.io/npm/v/github-public-organisation-repositories.svg)](https://www.npmjs.com/package/github-public-organisation-repositories)
-[![Build status](https://img.shields.io/circleci/project/Financial-Times/get-github-public-organisation-repositories.svg)](https://circleci.com/gh/Financial-Times/get-github-public-organisation-repositories)
-[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)][license]
-
 
 Table Of Contents
 -----------------
