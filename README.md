@@ -77,7 +77,7 @@ If you're opening issues related to these, please mention the version that the i
 Contact
 -------
 
-If you have any questions or comments about this module, or need help using it, please either [raise an issue][issues], visit [#ft-origami] or email [Origami Support].
+If you have any questions or comments about this module, or need help using it, please either [raise an issue][issues], visit [#origami-support] or email [Origami Support].
 
 
 Licence
@@ -87,7 +87,7 @@ This software is published by the Financial Times under the [MIT licence][licens
 
 
 
-[#ft-origami]: https://financialtimes.slack.com/messages/ft-origami/
+[#origami-support]: https://financialtimes.slack.com/messages/origami-support/
 [issues]: https://github.com/Financial-Times/get-github-public-organisation-repositories/issues
 [license]: http://opensource.org/licenses/MIT
 [node.js]: https://nodejs.org/
