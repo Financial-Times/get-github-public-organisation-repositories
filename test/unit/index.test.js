@@ -1,15 +1,11 @@
 'use strict';
 
 const assert = require('proclaim');
-const mockery = require('mockery');
 
 describe('index', () => {
-	let Github;
 	let getPublicOrganisationRepositoriesFactory;
 
 	beforeEach(() => {
-		Github = require('./mock/github.mock');
-		mockery.registerMock('github', Github);
 
 		getPublicOrganisationRepositoriesFactory = require('../..');
 	});
@@ -33,25 +29,6 @@ describe('index', () => {
 		beforeEach(() => {
 			token = 'abcdef';
 			getPublicOrganisationRepositories = getPublicOrganisationRepositoriesFactory(token);
-		});
-
-		it('constructs a github client', () => {
-			assert.calledOnce(Github);
-			assert.calledWith(Github, {
-				protocol: 'https',
-				host: 'api.github.com',
-				pathPrefix: '',
-				Promise: global.Promise,
-				timeout: 5000,
-			});
-		});
-
-		it('authenticates using oauth and token provided', () => {
-			assert.calledOnce(Github.mockGithub.authenticate);
-			assert.calledWith(Github.mockGithub.authenticate, {
-				type: 'oauth',
-				token: token
-			});
 		});
 
 		it('returns a function', () => {
