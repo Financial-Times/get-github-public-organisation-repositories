@@ -4,7 +4,7 @@
   "description": "Helper function to return all public github repositories for a given organisation",
   "main": "index.js",
   "scripts": {
-    "test": "make verify test"
+    "test": "make verify test && mocha test/end-to-end"
   },
   "keywords": [
     "github"
