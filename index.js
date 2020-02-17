@@ -31,7 +31,7 @@ function getPublicOrganisationRepositoriesFor(origanisation, privateWhitelist, g
 			return repositories;
 		}
 	});
-};
+}
 
 /**
  * Create a package data object.
@@ -44,16 +44,16 @@ module.exports = function getPublicOrganisationRepositoriesFactory(token) {
 	}
 
 	const github = new GitHubApi({
-    protocol: 'https',
-    host: 'api.github.com',
-    pathPrefix: '',
-    Promise: global.Promise,
-    timeout: 5000,
+		protocol: 'https',
+		host: 'api.github.com',
+		pathPrefix: '',
+		Promise: global.Promise,
+		timeout: 5000,
 	});
 
 	github.authenticate({
-			type: 'oauth',
-			token: token
+		type: 'oauth',
+		token: token
 	});
 
 	const getForOrg = denodeify(github.repos.getForOrg.bind(github.repos));
