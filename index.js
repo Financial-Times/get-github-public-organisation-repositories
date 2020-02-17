@@ -36,7 +36,7 @@ module.exports = function asyncgetPublicOrganisationRepositoriesFactory(token) {
 		auth: token
 	});
 
-	return async function getPublicOrganisationRepositories(organisation, privateReposToInclude) {
+	return function getPublicOrganisationRepositories(organisation, privateReposToInclude) {
 		privateReposToInclude = privateReposToInclude || [];
 		if (typeof organisation !== 'string') {
 			throw new TypeError('Expected organisation to be type string, was given type ' + typeof organisation);
@@ -44,6 +44,6 @@ module.exports = function asyncgetPublicOrganisationRepositoriesFactory(token) {
 		if (!Array.isArray(privateReposToInclude)) {
 			throw new TypeError('Expected privateReposToInclude to be type array, was given type ' + typeof privateReposToInclude);
 		}
-		return await getPublicOrganisationRepositoriesFor(organisation, privateReposToInclude, octokit);
+		return getPublicOrganisationRepositoriesFor(organisation, privateReposToInclude, octokit);
 	};
 };
