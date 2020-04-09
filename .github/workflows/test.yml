@@ -8,6 +8,6 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: 12.x
-    - run: npm install
-    - run: make verify
-    - run: make test
+    - run: npm cit
+      env:
+        TEST_TOKEN: ${{ secrets.TEST_TOKEN }}
