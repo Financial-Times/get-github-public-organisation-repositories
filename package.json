@@ -13,7 +13,7 @@
   "license": "MIT",
   "dependencies": {
     "@financial-times/origami-service-makefile": "^7.0.3",
-    "@octokit/rest": "^16.43.1"
+    "@octokit/rest": "^18.0.0"
   },
   "devDependencies": {
     "eslint": "^7.3.1",
