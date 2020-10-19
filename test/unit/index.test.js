@@ -45,7 +45,10 @@ describe('index', () => {
 
 		describe('getPublicOrganisationRepositories("financial-times")', () => {
 			it('returns a promise', () => {
-				assert.instanceOf(getPublicOrganisationRepositories('financial-times'), Promise);
+				const result = getPublicOrganisationRepositories('financial-times');
+				assert.instanceOf(result, Promise);
+				// Add a catch handler because the call will reject due to having bad GitHub credentials
+				result.catch(() => {});
 			});
 		});
 	});
