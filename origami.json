@@ -1,6 +1,6 @@
 {
 	"description": "Helper function to return all public github repositories for a given organisation",
-	"origamiType": null,
+	"origamiType": "library",
 	"origamiVersion": 1,
 	"keywords": [
 		"github"
