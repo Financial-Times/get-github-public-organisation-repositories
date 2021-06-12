@@ -1,7 +1,0 @@
-{
-	"checkPolicies": true,
-	"projectName": "get-github-public-organisation-repositories",
-	"productName": "origami services and node modules",
-	"devDep": false,
-	"failOnError": true
-}
